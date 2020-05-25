@@ -1,6 +1,7 @@
 'use strict';
 
 const userBudget = prompt('¿Cual es tu presupuesto semanal?');
+const form = document.getElementById('agregar-gasto');
 let budgetQuantity;
 
 class Budget {
@@ -34,4 +35,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const ui = new Interface();
     ui.writeBudget(budgetQuantity.budget);
   }
+});
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  //read expenditure form
+  const expenditureName = document.querySelector('#gasto').value;
+  const expenditureQuantity =document.querySelector('#cantidad').value;
 });
