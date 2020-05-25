@@ -42,11 +42,12 @@ class Interface {
     }, 3000);
   }
 
-  addExpenditureList(expenditureName, expenditureQuantity){
-    const expenditureList=document.querySelector('#gastos ul');
+  addExpenditureList(expenditureName, expenditureQuantity) {
+    const expenditureList = document.querySelector('#gastos ul');
 
     const li = document.createElement('li');
-    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+    li.className =
+      'list-group-item d-flex justify-content-between align-items-center';
     li.innerHTML = `
         ${expenditureName} 
        <span class="badge badge-primary badge-pill"> ${expenditureQuantity}€ </span>`;
@@ -54,8 +55,13 @@ class Interface {
     expenditureList.appendChild(li);
   }
 
+    //check the remaining budget
+    remainingBudget(quantity){
+        const remaining = document.querySelector('span#restante');
+        const remainingBudgetUser = budgetQuantity.remainingBudget(quantity);
 
-
+        remaining.innerHTML = `${remainingBudgetUser}`;
+    }
 
 }
 
@@ -84,5 +90,6 @@ form.addEventListener('submit', function (e) {
   } else {
     ui.printMsj('Gasto añadido', 'correcto');
     ui.addExpenditureList(expenditureName, expenditureQuantity);
+    ui.remainingBudget(expenditureQuantity);
   }
 });
