@@ -61,6 +61,24 @@ class Interface {
         const remainingBudgetUser = budgetQuantity.remainingBudget(quantity);
 
         remaining.innerHTML = `${remainingBudgetUser}`;
+        this.checkBudget();
+    }
+
+    checkBudget(){
+        const budgetTotal = budgetQuantity.budget;
+        const budgetRemaining = budgetQuantity.remaining;
+
+        //check 25%
+        if(budgetTotal / 4 > budgetRemaining){
+            const remaining = document.querySelector('.restante');
+            remaining.classList.remove('alert-success', 'alert-warning');
+            remaining.classList.add('alert-danger');
+        } else if ((budgetTotal /2) > budgetRemaining){
+            const remaining = document.querySelector('.restante');
+            remaining.classList.remove('alert-success');
+            remaining.classList.add('alert-warning');
+
+        }
     }
 
 }
