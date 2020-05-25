@@ -41,6 +41,22 @@ class Interface {
       form.reset();
     }, 3000);
   }
+
+  addExpenditureList(expenditureName, expenditureQuantity){
+    const expenditureList=document.querySelector('#gastos ul');
+
+    const li = document.createElement('li');
+    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+    li.innerHTML = `
+        ${expenditureName} 
+       <span class="badge badge-primary badge-pill"> ${expenditureQuantity}€ </span>`;
+
+    expenditureList.appendChild(li);
+  }
+
+
+
+
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -67,5 +83,6 @@ form.addEventListener('submit', function (e) {
     ui.printMsj('Hubo un error', 'error');
   } else {
     ui.printMsj('Gasto añadido', 'correcto');
+    ui.addExpenditureList(expenditureName, expenditureQuantity);
   }
 });
