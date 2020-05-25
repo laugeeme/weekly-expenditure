@@ -24,6 +24,23 @@ class Interface {
     budgetSpan.innerHTML = `${quantity}`;
     remainingSpan.innerHTML = `${quantity}`;
   }
+
+  printMsj(msj, type) {
+    const divMsj = document.createElement('div');
+    divMsj.classList.add('text-center', 'alert');
+    if (type === 'error') {
+      divMsj.classList.add('alert-danger');
+    } else {
+      divMsj.classList.add('alert-success');
+    }
+    divMsj.appendChild(document.createTextNode(msj));
+    document.querySelector('.primario').insertBefore(divMsj, form);
+
+    setTimeout(function () {
+      document.querySelector('.primario').remove;
+      form.reset();
+    }, 3000);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -42,5 +59,13 @@ form.addEventListener('submit', function (e) {
 
   //read expenditure form
   const expenditureName = document.querySelector('#gasto').value;
-  const expenditureQuantity =document.querySelector('#cantidad').value;
+  const expenditureQuantity = document.querySelector('#cantidad').value;
+
+  const ui = new Interface();
+
+  if (expenditureName === '' || expenditureQuantity === '') {
+    ui.printMsj('Hubo un error', 'error');
+  } else {
+    ui.printMsj('Gasto añadido', 'correcto');
+  }
 });
