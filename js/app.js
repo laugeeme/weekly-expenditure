@@ -55,32 +55,30 @@ class Interface {
     expenditureList.appendChild(li);
   }
 
-    //check the remaining budget
-    remainingBudget(quantity){
-        const remaining = document.querySelector('span#restante');
-        const remainingBudgetUser = budgetQuantity.remainingBudget(quantity);
+  //check the remaining budget
+  remainingBudget(quantity) {
+    const remaining = document.querySelector('span#restante');
+    const remainingBudgetUser = budgetQuantity.remainingBudget(quantity);
 
-        remaining.innerHTML = `${remainingBudgetUser}`;
-        this.checkBudget();
+    remaining.innerHTML = `${remainingBudgetUser}`;
+    this.checkBudget();
+  }
+
+  checkBudget() {
+    const budgetTotal = budgetQuantity.budget;
+    const budgetRemaining = budgetQuantity.remaining;
+
+    //check 25%
+    if (budgetTotal / 4 > budgetRemaining) {
+      const remaining = document.querySelector('.restante');
+      remaining.classList.remove('alert-success', 'alert-warning');
+      remaining.classList.add('alert-danger');
+    } else if (budgetTotal / 2 > budgetRemaining) {
+      const remaining = document.querySelector('.restante');
+      remaining.classList.remove('alert-success');
+      remaining.classList.add('alert-warning');
     }
-
-    checkBudget(){
-        const budgetTotal = budgetQuantity.budget;
-        const budgetRemaining = budgetQuantity.remaining;
-
-        //check 25%
-        if(budgetTotal / 4 > budgetRemaining){
-            const remaining = document.querySelector('.restante');
-            remaining.classList.remove('alert-success', 'alert-warning');
-            remaining.classList.add('alert-danger');
-        } else if ((budgetTotal /2) > budgetRemaining){
-            const remaining = document.querySelector('.restante');
-            remaining.classList.remove('alert-success');
-            remaining.classList.add('alert-warning');
-
-        }
-    }
-
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
